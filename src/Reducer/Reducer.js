@@ -1,13 +1,13 @@
+//
+//
 const reducer = (state, action) => {
-  // Handle the dispatch actions here
-  if (action.type === "ADD_CLIENT") {
-    const newClients = [...state.clients, action.payload];
-
+  if (action.type === "SUBMIT") {
     return {
       ...state,
-      clients: newClients,
+      clients: [...state.clients, { ...action.payload, active: true }],
     };
   }
+  return state;
 };
 
 export default reducer;
