@@ -12,6 +12,11 @@ export const clientData = [
           amount: "2000 usd",
           sessions: 20,
         },
+        {
+          date: "29-05-2022",
+          amount: "125 usd",
+          sessions: 20,
+        },
       ],
       credits: [
         {
