@@ -4,7 +4,7 @@ import { useGlobalContext } from "../Context/Context";
 //
 const ClientList = () => {
   // Bring in variables from context
-  const { clients, setFocusedClient, setIsFocused } = useGlobalContext();
+  const { clients, dispatch } = useGlobalContext();
   //
   return (
     <div className="bg-green-500 flex justify-center items-center">
@@ -15,8 +15,10 @@ const ClientList = () => {
               key={idx}
               className="flex justify-between px-2 bg-green-200 rounded cursor-pointer"
               onClick={() => {
-                setFocusedClient(client);
-                setIsFocused(true);
+                // setFocusedClient(client);
+                // setIsFocused(true);
+                dispatch({ type: "CAMS_MAGIC", payload: client });
+                //dispatch payload: client
               }}
             >
               <h2>{client.name}</h2>
