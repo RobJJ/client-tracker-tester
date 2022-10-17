@@ -17,12 +17,16 @@ const clientTemplate = {
   contact: "",
   active: false,
   notes: [],
-  receipts: { debits: [{}], credits: [{}] },
+  receipts: { debits: [], credits: [] },
 };
-// Default Template for Debit Client
+// Default Template for Debit and Credit Info
 const debitTemplate = {
   date: "",
   amount: "",
+  sessions: 0,
+};
+const creditTemplate = {
+  date: "",
   sessions: 0,
 };
 //
@@ -30,9 +34,8 @@ const AppProvider = ({ children }) => {
   // State varibales go here -
   const [state, dispatch] = useReducer(reducer, initialState);
   const [newClientInfo, setNewClientInfo] = useState(clientTemplate);
-  // const [focusedClient, setFocusedClient] = useState({});
-  // const [isFocused, setIsFocused] = useState(false);
-  const [debitClient, setDebitClient] = useState(debitTemplate);
+  const [debitInfo, setDebitInfo] = useState(debitTemplate);
+  const [creditInfo, setCreditInfo] = useState(creditTemplate);
   // Functions to handle state actions -
   //
   // To add a new Client
@@ -41,19 +44,18 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "SUBMIT", payload: newClientInfo });
     setNewClientInfo(clientTemplate);
   };
-  // To add a new debit reciept to existing client
-  // const addDebitReciept = (e) => {
-  //   e.preventDefault();
-  //   // focusedClient.receipts.debits.push(debitClient);
-  //   dispatch({ type: "DEBIT", payload: { debitClient } });
-  //   setDebitClient(debitTemplate);
-  // };
+  // To add a receipt - debit to client
   const addDebitToClient = (e) => {
     e.preventDefault();
-    console.log("LOGGED");
-    dispatch({ type: "DEBIT_CLIENT", payload: { debitClient } });
+    dispatch({ type: "DEBIT_CLIENT", payload: { debitInfo } });
+    setDebitInfo(debitTemplate);
   };
-
+  // To add a recipet - credit to client
+  const addCreditToClient = (e) => {
+    e.preventDefault();
+    dispatch({ type: "CREDIT_CLIENT", payload: creditInfo });
+    setCreditInfo(creditTemplate);
+  };
   //Return statement
   return (
     <AppContext.Provider
@@ -63,14 +65,13 @@ const AppProvider = ({ children }) => {
         newClientInfo,
         setNewClientInfo,
         submitNewClient,
-        // setFocusedClient,
-        // focusedClient,
-        // setIsFocused,
-        // isFocused,
-        debitClient,
-        setDebitClient,
+        debitInfo,
+        setDebitInfo,
+        creditInfo,
+        setCreditInfo,
         dispatch,
         addDebitToClient,
+        addCreditToClient,
       }}
     >
       {children}

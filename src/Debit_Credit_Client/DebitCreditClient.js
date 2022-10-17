@@ -6,12 +6,13 @@ import { useGlobalContext } from "../Context/Context";
 const DebitCreditClient = () => {
   //
   const {
-    debitClient,
-    setDebitClient,
-    addDebitReciept,
+    debitInfo,
+    setDebitInfo,
+    creditInfo,
+    setCreditInfo,
     focused,
-    dispatch,
     addDebitToClient,
+    addCreditToClient,
   } = useGlobalContext();
   //
   if (Object.keys(focused).length === 0) {
@@ -35,9 +36,9 @@ const DebitCreditClient = () => {
             <h2>Payment Date: </h2>
             <input
               type="date"
-              value={debitClient.date}
+              value={debitInfo.date}
               onChange={(e) =>
-                setDebitClient({ ...debitClient, date: e.target.value })
+                setDebitInfo({ ...debitInfo, date: e.target.value })
               }
             />
           </div>
@@ -45,20 +46,20 @@ const DebitCreditClient = () => {
             <h2>Payment Amount: </h2>
             <input
               type="text"
-              value={debitClient.amount}
+              value={debitInfo.amount}
               onChange={(e) =>
-                setDebitClient({ ...debitClient, amount: e.target.value })
+                setDebitInfo({ ...debitInfo, amount: e.target.value })
               }
               className="border"
             />
           </div>
           <div className="ml-2 flex gap-5 ">
-            <h2>Classes Added: </h2>
+            <h2>Sessions Added: </h2>
             <input
               type="number"
-              value={debitClient.sessions}
+              value={debitInfo.sessions}
               onChange={(e) =>
-                setDebitClient({ ...debitClient, sessions: e.target.value })
+                setDebitInfo({ ...debitInfo, sessions: e.target.value })
               }
               className="border"
             />
@@ -70,20 +71,35 @@ const DebitCreditClient = () => {
           </div>
         </form>
         {/* CREDIT SECTION */}
-        <section className="flex flex-col">
+        <form onSubmit={addCreditToClient} className="flex flex-col">
           <div>** Handle Sessions Clients have used **</div>
           <div className="gap-5 ml-2 flex">
             <h2>Class Date: </h2>
-            <input type="date" />
+            <input
+              type="date"
+              value={creditInfo.date}
+              onChange={(e) =>
+                setCreditInfo({ ...creditInfo, date: e.target.value })
+              }
+            />
           </div>
           <div className="gap-5 ml-2 flex">
-            <h2>Classes Used: </h2>
-            <input type="number" className="border" />
+            <h2>Sessions Used: </h2>
+            <input
+              type="number"
+              className="border"
+              value={creditInfo.sessions}
+              onChange={(e) =>
+                setCreditInfo({ ...creditInfo, sessions: e.target.value })
+              }
+            />
           </div>
           <div>
-            <button className="bg-gray-300 rounded">Credit Client</button>
+            <button type="submit" className="bg-gray-300 rounded">
+              Credit Client
+            </button>
           </div>
-        </section>
+        </form>
       </div>
     </div>
   );
