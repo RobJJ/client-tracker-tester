@@ -55,6 +55,7 @@ const AppProvider = ({ children }) => {
     // const uniqueKey = uuidv4();
     // setDebitInfo({ ...debitInfo, id: uniqueKey });
     dispatch({ type: "DEBIT_CLIENT", payload: { debitInfo } });
+    dispatch({ type: "UPDATE_FOCUS" });
     setDebitInfo(debitTemplate);
   };
   // To add a recipet - credit to client
@@ -62,9 +63,15 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     // const uniqueKey = uuidv4();
     // setCreditInfo({ ...creditInfo, id: uniqueKey });
-    dispatch({ type: "CREDIT_CLIENT", payload: creditInfo });
+    console.log("func called, creditInfo: ", creditInfo);
+    dispatch({ type: "CREDIT_CLIENT", payload: { creditInfo } });
+    dispatch({ type: "UPDATE_FOCUS" });
     setCreditInfo(creditTemplate);
   };
+  //
+  // const listReceipts = (client) => {
+  //   dispatch({ type: "LIST_RECEIPTS", payload: client });
+  // };
   //Return statement
   return (
     <AppContext.Provider

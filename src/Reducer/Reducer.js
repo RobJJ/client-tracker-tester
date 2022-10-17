@@ -13,10 +13,21 @@ const reducer = (state, action) => {
     };
   }
   //
+  //
   if (action.type === "CAMS_MAGIC") {
     return {
       ...state,
       focused: { ...action.payload },
+    };
+  }
+  //
+  if (action.type === "UPDATE_FOCUS") {
+    const updatedFocus = state.clients.find(
+      (client) => client.id === state.focused.id
+    );
+    return {
+      ...state,
+      focused: updatedFocus,
     };
   }
   //
@@ -29,7 +40,7 @@ const reducer = (state, action) => {
             ...client.receipts,
             debits: [
               ...client.receipts.debits,
-              { ...action.payload.debitInfo },
+              { ...action.payload.debitInfo, id: uuidv4() },
             ],
           },
         };
@@ -51,7 +62,7 @@ const reducer = (state, action) => {
             ...client.receipts,
             credits: [
               ...client.receipts.credits,
-              { ...action.payload.creditInfo },
+              { ...action.payload.creditInfo, id: uuidv4() },
             ],
           },
         };

@@ -4,10 +4,8 @@ import { useGlobalContext } from "../Context/Context";
 //
 const ActiveClientReceipts = () => {
   const { focused } = useGlobalContext();
+
   //
-  useEffect(() => {
-    console.log("USE EFFECT TRIGGERED - DOES LIST UPDATE?");
-  }, [focused]);
   //
   if (Object.keys(focused).length === 0) {
     return (

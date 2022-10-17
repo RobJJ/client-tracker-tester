@@ -5,7 +5,7 @@ import { useGlobalContext } from "../Context/Context";
 //
 const ClientList = () => {
   // Bring in variables from context
-  const { clients, dispatch } = useGlobalContext();
+  const { clients, dispatch, listReceipts } = useGlobalContext();
   //
   return (
     <div className="bg-green-500 flex justify-center items-center">
@@ -19,7 +19,8 @@ const ClientList = () => {
                 // setFocusedClient(client);
                 // setIsFocused(true);
                 dispatch({ type: "CAMS_MAGIC", payload: client });
-                //dispatch payload: client
+
+                // listReceipts(client);
               }}
             >
               <h2>{client.name}</h2>
