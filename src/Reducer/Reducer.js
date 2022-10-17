@@ -1,11 +1,15 @@
 //
+import { v4 as uuidv4 } from "uuid";
 //
 const reducer = (state, action) => {
   //
   if (action.type === "SUBMIT") {
     return {
       ...state,
-      clients: [...state.clients, { ...action.payload, active: true }],
+      clients: [
+        ...state.clients,
+        { ...action.payload, active: true, id: uuidv4() },
+      ],
     };
   }
   //

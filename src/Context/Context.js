@@ -1,6 +1,8 @@
 import React, { useContext, useState, useReducer, useEffect } from "react";
 import reducer from "../Reducer/Reducer";
 import { clientData } from "../Data/Data";
+
+//
 //
 const AppContext = React.createContext();
 //
@@ -15,6 +17,7 @@ const clientTemplate = {
   name: "",
   email: "",
   contact: "",
+  id: "",
   active: false,
   notes: [],
   receipts: { debits: [], credits: [] },
@@ -22,11 +25,13 @@ const clientTemplate = {
 // Default Template for Debit and Credit Info
 const debitTemplate = {
   date: "",
+  id: "",
   amount: "",
   sessions: 0,
 };
 const creditTemplate = {
   date: "",
+  id: "",
   sessions: 0,
 };
 //
@@ -47,12 +52,16 @@ const AppProvider = ({ children }) => {
   // To add a receipt - debit to client
   const addDebitToClient = (e) => {
     e.preventDefault();
+    // const uniqueKey = uuidv4();
+    // setDebitInfo({ ...debitInfo, id: uniqueKey });
     dispatch({ type: "DEBIT_CLIENT", payload: { debitInfo } });
     setDebitInfo(debitTemplate);
   };
   // To add a recipet - credit to client
   const addCreditToClient = (e) => {
     e.preventDefault();
+    // const uniqueKey = uuidv4();
+    // setCreditInfo({ ...creditInfo, id: uniqueKey });
     dispatch({ type: "CREDIT_CLIENT", payload: creditInfo });
     setCreditInfo(creditTemplate);
   };

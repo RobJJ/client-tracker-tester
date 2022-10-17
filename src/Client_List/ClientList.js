@@ -1,5 +1,6 @@
 import React from "react";
 import { useGlobalContext } from "../Context/Context";
+
 //
 //
 const ClientList = () => {
@@ -9,10 +10,10 @@ const ClientList = () => {
   return (
     <div className="bg-green-500 flex justify-center items-center">
       <div className="bg-white w-5/6 h-5/6 flex flex-col gap-1 overflow-auto">
-        {clients.map((client, idx) => {
+        {clients.map((client) => {
           return (
             <div
-              key={idx}
+              key={client.id}
               className="flex justify-between px-2 bg-green-200 rounded cursor-pointer"
               onClick={() => {
                 // setFocusedClient(client);

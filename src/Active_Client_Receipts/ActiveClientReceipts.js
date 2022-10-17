@@ -5,6 +5,10 @@ import { useGlobalContext } from "../Context/Context";
 const ActiveClientReceipts = () => {
   const { focused } = useGlobalContext();
   //
+  useEffect(() => {
+    console.log("USE EFFECT TRIGGERED - DOES LIST UPDATE?");
+  }, [focused]);
+  //
   if (Object.keys(focused).length === 0) {
     return (
       <div className="bg-pink-700 flex justify-center items-center">
@@ -14,6 +18,7 @@ const ActiveClientReceipts = () => {
       </div>
     );
   }
+  //
   // const [list, setList] = useState([]);
   // useEffect(() => {
   //   const dataArr = [];
@@ -39,7 +44,7 @@ const ActiveClientReceipts = () => {
             return (
               <div
                 className="flex w-full bg-green-200 pl-4 gap-2"
-                key={debit.date}
+                key={debit.id}
               >
                 <h3 className="w-1/3">{debit.date}</h3>
                 <h3 className="w-1/3">{debit.amount}</h3>
@@ -51,7 +56,7 @@ const ActiveClientReceipts = () => {
             return (
               <div
                 className="grid grid-cols-3 pl-4 gap-2 bg-yellow-200"
-                key={credit.date}
+                key={credit.id}
               >
                 <h3 className="col-span-1">{credit.date}</h3>
                 <h3 className="col-start-3 col-span-1">-{credit.sessions}</h3>
