@@ -63,7 +63,6 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     // const uniqueKey = uuidv4();
     // setCreditInfo({ ...creditInfo, id: uniqueKey });
-    console.log("func called, creditInfo: ", creditInfo);
     dispatch({ type: "CREDIT_CLIENT", payload: { creditInfo } });
     dispatch({ type: "UPDATE_FOCUS" });
     setCreditInfo(creditTemplate);
