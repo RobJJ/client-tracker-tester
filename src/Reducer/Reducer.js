@@ -43,6 +43,8 @@ const reducer = (state, action) => {
               { ...action.payload.debitInfo, id: uuidv4() },
             ],
           },
+          balance:
+            Number(client.balance) + Number(action.payload.debitInfo.sessions),
         };
       }
       return client;
@@ -65,6 +67,8 @@ const reducer = (state, action) => {
               { ...action.payload.creditInfo, id: uuidv4() },
             ],
           },
+          balance:
+            Number(client.balance) - Number(action.payload.creditInfo.sessions),
         };
       }
       return client;

@@ -40,7 +40,7 @@ const ActiveClient = () => {
             Notes: <span className="ml-5">notes **</span>
           </h2>
           <h2 className="bg-pink-300 ml-2">
-            Balance: <span className="ml-5">Balance **</span>
+            Balance: <span className="ml-5">{focused.balance}</span>
           </h2>
         </div>
       </div>

@@ -21,6 +21,7 @@ const clientTemplate = {
   active: false,
   notes: [],
   receipts: { debits: [], credits: [] },
+  balance: 0,
 };
 // Default Template for Debit and Credit Info
 const debitTemplate = {
@@ -52,8 +53,7 @@ const AppProvider = ({ children }) => {
   // To add a receipt - debit to client
   const addDebitToClient = (e) => {
     e.preventDefault();
-    // const uniqueKey = uuidv4();
-    // setDebitInfo({ ...debitInfo, id: uniqueKey });
+    //
     dispatch({ type: "DEBIT_CLIENT", payload: { debitInfo } });
     dispatch({ type: "UPDATE_FOCUS" });
     setDebitInfo(debitTemplate);
@@ -61,8 +61,7 @@ const AppProvider = ({ children }) => {
   // To add a recipet - credit to client
   const addCreditToClient = (e) => {
     e.preventDefault();
-    // const uniqueKey = uuidv4();
-    // setCreditInfo({ ...creditInfo, id: uniqueKey });
+    //
     dispatch({ type: "CREDIT_CLIENT", payload: { creditInfo } });
     dispatch({ type: "UPDATE_FOCUS" });
     setCreditInfo(creditTemplate);
